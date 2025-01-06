@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Corinne Denver",
+    "address": "1455 California Street",
+    "category": "",
+    "rating": "4.7",
+    "menus": "",
+    "createdAt": ""
+  },
+  {
+    "name":"Nola Jane Restaurant & Bar",
+    "address":"1435 Market St,Denver",
+    "category":"Cajun Restaurant",
+    "rating":"4.3",
+    "menus":"",
+    "createdAt":""
+
+  }
+]
