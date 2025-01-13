@@ -186,7 +186,6 @@
   [
     {
       "name": "Nola Jane Restaurant & Bar",
-
       "type": "Salads",
       "items": [
         {
@@ -197,18 +196,42 @@
         {
           "name": "Nola Jane House Salad",
           "description": "Arugula and mixed greens, dried cherries, Roma tomato, smoked gouda, charred green onion vinaigrette.",
-          "price": 15,
+          "price": 15.0,
           "options": [
             {
-              "additive": "Add fried, blackened, or grilled shrimp",
+              "additive": "Add fried shrimp",
               "price": 7.0
             },
             {
-              "additive": "Add fried, blackened, or grilled chicken",
+              "additive": "Add blackened shrimp",
+              "price": 7.0
+            },
+            {
+              "additive": "Add grilled shrimp",
+              "price": 7.0
+            },
+            {
+              "additive": "Add fried chicken",
               "price": 6.0
             },
             {
-              "additive": "Add fried, blackened, or grilled fish",
+              "additive": "Add blackened chicken",
+              "price": 6.0
+            },
+            {
+              "additive": "Add grilled chicken",
+              "price": 6.0
+            },
+            {
+              "additive": "Add fried fish",
+              "price": 6.0
+            },
+            {
+              "additive": "Add blackened fish",
+              "price": 6.0
+            },
+            {
+              "additive": "Add grilled fish",
               "price": 6.0
             }
           ]
@@ -221,29 +244,30 @@
         {
           "name": "Jalapeño Hushpuppies",
           "description": "Choice of creole ranch, fresno caper dill or spicy mayo",
-          "price": 9
+          "price": 9.0
         },
         {
           "name": "Southern Fried Okra",
           "description": "Choice of creole ranch, fresno caper dill or spicy mayo",
-          "price": 9
+          "price": 9.0
         },
         {
           "name": "Gumbo Bowl With Rice",
           "description": "Dark roux, chicken, andouille sausage, trinity, served over rice or dirty rice (+$2.00)",
-          "price": 9,
+          "price": 9.0,
           "options": [
             {
               "additive": "Cup",
-              "price": 7
+              "price": 7.0
             },
             {
               "additive": "Bowl",
-              "price": 17
+              "price": 17.0
             }
           ]
         }
       ]
     }
   ]
+  
 ]
