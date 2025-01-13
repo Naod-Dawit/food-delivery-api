@@ -6,13 +6,14 @@ import axios from "axios";
 // Fetch restaurants with populated menus
 export const getRestaurants = async (req: Request, res: Response) => {
   try {
-    const restaurants = await Restaurant.find().populate("menus");
+    const restaurants = await Restaurant.find({});
 
     res.status(200).json(restaurants);
   } catch (error: any) {
     res.status(500).json({ message: error.message });
   }
 };
+
 
 // Add a restaurant
 export const addRestaurant = async (req: Request, res: Response) => {
