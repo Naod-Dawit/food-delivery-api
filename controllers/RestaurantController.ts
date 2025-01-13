@@ -62,7 +62,7 @@ export const getRestaurantById = async (
 
   try {
     if (_id) {
-      const restaurant = await Restaurant.findById(_id).populate("menus");
+      const restaurant = await Restaurant.findById(_id);
       if (!restaurant) {
         return res.status(404).json({ error: "Restaurant not found" });
       }
