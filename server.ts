@@ -8,13 +8,17 @@ import  UserRoutes  from "./routes/MainRouter";
 import { webhook } from "./controllers/Food Order/Checkout";
 const app =express()
 
+app.post(
+  "/api/webhook",
+  webhook
+);
+app.use(express.json());
+
+
 app.use(
     "/api/webhook",
-    express.raw({ type: 'application/json' }),
     webhook
   );
-  
-app.use(express.json());
 app.use(cors())
 
 ConnectDb()
