@@ -12,7 +12,7 @@ router.post('/menus', addMenu);
 router.post("/upload", uploadData);
 router.get('/restaurants/:_id', getRestaurantById);
 router.post("/create-payment-intent", CreatePaymentIntent); 
-router.post("/webhook", express.raw({ type: "application/json" }), webhook);
+// router.post("/webhook", express.raw({ type: "application/json" }), webhook);
 
 
 export default router;
