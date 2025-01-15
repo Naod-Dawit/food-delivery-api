@@ -38,6 +38,7 @@ export const webhook = (req: Request, res: Response) => {
         sig,
         signingSecret
       );
+      console.log(req.body)
     } catch (err:any) {
       console.error("Webhook signature verification failed:", err.message);
       res.status(400).send(`Webhook Error: ${err.message}`);
