@@ -13,7 +13,6 @@ export const CreatePaymentIntent = async (req: Request, res: Response) => {
       currency: "usd",
       payment_method_types: ["card"],
     });
-    console.log(req.body);
     res.send({ clientSecret: paymentIntent.client_secret });
   } catch (err) {
     console.log(err);
@@ -23,6 +22,8 @@ export const CreatePaymentIntent = async (req: Request, res: Response) => {
 export const webhook = (req: Request, res: Response) => {
   const sig = req.headers["stripe-signature"];
   const signingSecret = "whsec_JZSzoE0ItMya7NMIZQEjSe1l5N6Sxnw1";
+
+  console.log("sig",sig)
 
   if (!sig) {
     res.status(400).send("Missing Stripe signature header");
