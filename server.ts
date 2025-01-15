@@ -2,14 +2,14 @@ import dotenv from "dotenv";
 import cors from 'cors'
 
 dotenv.config()
-import express,{ Request,Response} from "express"
+import express,{ } from "express"
 import { ConnectDb } from "./config/db";
 import  UserRoutes  from "./routes/MainRouter";
 import { webhook } from "./controllers/Food Order/Checkout";
 const app =express()
 
-app.post(
-    "api/webhook",
+app.use(
+    "/api/webhook",
     express.raw({ type: 'application/json' }),
     webhook
   );
@@ -19,7 +19,6 @@ app.use(cors())
 
 ConnectDb()
 const PORT=process.env.PORT
-
 
 
 app.use("/api",UserRoutes)

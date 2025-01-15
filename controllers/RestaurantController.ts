@@ -57,7 +57,6 @@ export const getRestaurantById = async (
   res: Response
 ): Promise<any> => {
   const { _id } = req.params; 
-  console.log(_id)
   
 
   try {
