@@ -23,27 +23,23 @@ export const webhook = (req: Request, res: Response) => {
   const sig = req.headers["stripe-signature"];
   const signingSecret = "whsec_jYOHG8p78xEFPkN0WslSprd3mUiQtRIb";
 
-  console.log("sig",sig)
 
   if (!sig) {
     res.status(400).send("Missing Stripe signature header");
     return;
   }
 
-  console.log("Raw Body:", req.body);
 
   let event;
 
   try {
     event = activestripe.webhooks.constructEvent(req.body, sig, signingSecret);
-    console.log("Webhook event:", event);
   } catch (err: any) {
     console.error("Webhook signature verification failed:", err.message);
     res.status(400).send(`Webhook Error: ${err.message}`);
     return;
   }
 
-  console.log("webhook received");
   
   res.status(200).send("Webhook received");
 };
