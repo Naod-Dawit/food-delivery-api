@@ -20,10 +20,9 @@ const orderSchema = new mongoose.Schema({
     street: { type: String, required: true },
     city: { type: String },
     state: { type: String },
-    zipCode: { type: String },
-    instructions: { type: String },
+    contact: { type: Number, required: true },
+    instructions: { type: String,required:false },
   },
-  contact: { type: Number, required: true },
   dishes: [
     {
       dish: {

@@ -67,7 +67,13 @@ export const CreatePaymentIntent = async (req: Request, res: Response) => {
 
     const createorder = new Order({
       restaurant: restaurant, // Assuming this is a valid object with 'name' included
-      address: { street: address },
+      address: {
+        street: address.street,
+        city: address.city,
+        state: address.state,
+        contact: address.contact,
+        instructions:address.instructions
+      },
       contact: contact,
       dishes: dishes, // Add the properly formatted dishes
       totalPrice: price,
