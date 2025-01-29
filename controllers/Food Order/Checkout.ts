@@ -1,9 +1,15 @@
+import dotenv from "dotenv";
+dotenv.config();
+
+
 import express, { Express, Request, Response } from "express";
 import stripe from "stripe";
 import { Order } from "../../models/OrderSchema";
 import { Restaurant } from "../../models/RestaurantSchema";
+const secret_key:any= process.env.SECRET_KEY
+
 const activestripe = new stripe(
-  "sk_test_51PpRlJDhY4vz0hkIRHwDdwaXZgYEH0LMOAKi6HhfAoqNiXmY4Lky1ydeCaJMVYdq3u9EKcyG1Jf5P4DAhYSK6FV900qIMm4Mcc"
+  secret_key
 );
 
 export const CreatePaymentIntent = async (req: Request, res: Response) => {
