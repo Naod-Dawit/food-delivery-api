@@ -12,22 +12,32 @@ const activestripe = new stripe(
   secret_key
 );
 
-export const CreatePaymentIntent = async (req: Request, res: Response) => {
+export const CreateCheckoutSession = async (req: Request, res: Response) => {
   const { items, price, address, contact } = req.body;
   try {
-    const customer = await activestripe.customers.create();
-    const paymentIntent = await activestripe.paymentIntents.create({
-      amount: price * 100,
-      currency: "usd",
+    const session = await activestripe.checkout.sessions.create({
       payment_method_types: ["card"],
+      line_items: items.map((item: any) => ({
+        price_data: {
+          currency: "usd",
+          product_data: { name: item.name },
+          unit_amount: item.price * 100,
+        },
+        quantity: item.quantity,
+      })),
+      mode: "payment",
+      success_url: "https://yourwebsite.com/success",
+      cancel_url: "https://yourwebsite.com/cancel",
+      metadata: { address: JSON.stringify(address), contact },
     });
-    console.log(items);
 
-    const itemNames = items.map((item: { name: any }) => item.name);
+    res.json({ url: session.url });
+
     const itemQuantity = items.map(
       (item: { quantity: number }) => item.quantity
     );
-
+    
+    const itemNames = items.map((item: { name: any }) => item.name);
     const itemSelectedOptions = items.map(
       (item: { selectedOptions: any }) => item.selectedOptions
     );
@@ -87,7 +97,7 @@ export const CreatePaymentIntent = async (req: Request, res: Response) => {
 
     await createorder.save();
 
-    res.send({ clientSecret: paymentIntent.client_secret });
+    res.json({ url: session.url });
   } catch (err) {
     console.log(err);
   }
