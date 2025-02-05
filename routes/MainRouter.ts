@@ -12,6 +12,9 @@ router.post('/menus', addMenu);
 router.post("/upload", uploadData);
 router.get('/restaurants/:_id', getRestaurantById);
 router.post("/create-checkout-session", CreateCheckoutSession); 
+router.get("/success",()=>{
+    console.log("hello")
+})
 // router.post("/webhook", express.raw({ type: "application/json" }), webhook);
 
 
