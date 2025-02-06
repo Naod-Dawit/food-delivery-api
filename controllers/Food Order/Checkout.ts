@@ -23,8 +23,8 @@ export const CreateCheckoutSession = async (req: Request, res: Response) => {
         quantity: item.quantity,
       })),
       mode: "payment",
-      success_url: "myapp://success",
-      cancel_url: "myapp://cancel",
+      success_url: "http://localhost:5000/api/success",
+      cancel_url: "http://localhost:5000/api/success",
       metadata: { address: JSON.stringify(address), contact },
     });
 
