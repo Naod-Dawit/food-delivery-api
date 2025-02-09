@@ -28,8 +28,6 @@ export const CreateCheckoutSession = async (req: Request, res: Response) => {
       metadata: { address: JSON.stringify(address), contact },
     });
 
-    console.log(session.url);
-    res.json({ url: session.url });
 
     const itemQuantity = items.map(
       (item: { quantity: number }) => item.quantity
@@ -40,7 +38,6 @@ export const CreateCheckoutSession = async (req: Request, res: Response) => {
       (item: { selectedOptions: any }) => item.selectedOptions
     );
 
-    console.log("itemnames", itemNames);
 
     const restaurant = await Restaurant.findOne(
       {
@@ -58,13 +55,7 @@ export const CreateCheckoutSession = async (req: Request, res: Response) => {
       }
     );
 
-    console.log("restaurant", restaurant?.name);
-    console.log("items", itemNames);
-    console.log("quantity", itemQuantity);
-
-    console.log("adress", address);
-    console.log("contact", contact);
-    console.log("selected", itemSelectedOptions);
+   
 
     const dishes = items.map(
       (
@@ -103,12 +94,18 @@ export const CreateCheckoutSession = async (req: Request, res: Response) => {
 
 export const webhook = (req: Request, res: Response) => {
   const sig = req.headers["stripe-signature"];
-  const signingSecret: string | any = process.env.SIGNING_SECRET;
-  if (!sig) {
+  const signingSecret: any = process.env.SIGNING_SECRET;
+  const Secretkey: any = process.env.SECRET_KEY;
+
+
+console.log("signing key",signingSecret) 
+console.log("secret key",secret_key) 
+
+ if (!sig) {
     res.status(400).send("Missing Stripe signature header");
     return;
   }
-  if (signingSecret) {
+  if (!signingSecret) {
     throw new Error("Stripe secret key is missing in environment variables.");
   }
 
@@ -116,6 +113,8 @@ export const webhook = (req: Request, res: Response) => {
 
   try {
     event = activestripe.webhooks.constructEvent(req.body, sig, signingSecret);
+    console.log(event.data);
+    
     if (
       event.type === "checkout.session.completed" ||
       event.type === "checkout.session.async_payment_succeeded"
